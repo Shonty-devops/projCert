@@ -1,0 +1,19 @@
+---
+- name: Deploy entire website
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: Ensure destination directory exists
+      file:
+        path: /var/jenkins_home/workspace/Ansible_Test/website
+        state: directory
+
+    - name: Copy all website files
+      copy:
+        src: /var/jenkins_home/workspace/Ansible_Test/website/
+        dest: /var/jenkins_home/workspace/Ansible_Test/website/
+        owner: jenkins
+        group: jenkins
+        mode: '0644'
+        remote_src: yes
+
